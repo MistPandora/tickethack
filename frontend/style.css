@@ -1,1 +1,314 @@
-/*# sourceMappingURL=style.css.map */
+#ticketsContainer, .card #inputsContainer {
+  width: calc(100% - 30px);
+  padding: 0 25px;
+}
+#ticketsContainer input:not(.book), .card #inputsContainer input:not(.book),
+#ticketsContainer .ticket-item,
+.card #inputsContainer .ticket-item {
+  width: calc(100% - 30px);
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.flex-main, #cardsContainer, header #logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body,
+p,
+span,
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+div,
+input {
+  border-radius: 5px;
+}
+
+input {
+  outline: none;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #eff2f1;
+}
+@media screen and (max-width: 700px) {
+  body {
+    background-size: auto;
+  }
+}
+
+.btn {
+  color: #fff;
+  background-color: #459e85;
+  font-size: 16px;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.4s ease-in-out;
+}
+.btn:hover {
+  background-color: #3d8c76;
+  transition: background-color 0.3s ease-in-out;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 25px;
+  background-color: #fff;
+}
+header #logoContainer {
+  width: 200px;
+  height: 100%;
+  cursor: pointer;
+}
+header #nav {
+  display: flex;
+  justify-content: space-around;
+  width: 225px;
+}
+header #nav a {
+  color: #000;
+}
+@media screen and (min-width: 700px) {
+  header #nav a {
+    font-size: calc(21px + 2 * ((100vw - 700px) / 600));
+  }
+}
+@media screen and (min-width: 1300px) {
+  header #nav a {
+    font-size: 23px;
+  }
+}
+@media screen and (max-width: 700px) {
+  header #nav a {
+    font-size: 21px;
+  }
+}
+header #nav a:hover {
+  font-weight: 500;
+}
+
+#title {
+  color: #fff;
+  text-align: center;
+  margin-top: 50px;
+}
+#title h1,
+#title h2 {
+  margin: 20px 0;
+  padding: 0 25px;
+  line-height: 1.5;
+}
+@media screen and (min-width: 700px) {
+  #title h1 {
+    font-size: calc(35px + 15 * ((100vw - 700px) / 600));
+  }
+}
+@media screen and (min-width: 1300px) {
+  #title h1 {
+    font-size: 50px;
+  }
+}
+#title h2 {
+  font-weight: 500;
+}
+@media screen and (min-width: 700px) {
+  #title h2 {
+    font-size: calc(22px + 8 * ((100vw - 700px) / 600));
+  }
+}
+@media screen and (min-width: 1300px) {
+  #title h2 {
+    font-size: 30px;
+  }
+}
+
+#cardsContainer {
+  flex-wrap: nowrap;
+  gap: 0 5%;
+  margin: 80px 0 25px;
+}
+@media screen and (max-width: 980px) {
+  #cardsContainer {
+    flex-wrap: wrap;
+  }
+}
+
+.card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  min-width: 300px;
+  min-height: 350px;
+  width: 425px;
+  height: 500px;
+  margin: 50px 15px 0;
+  border-radius: 10px;
+  background-color: #fff;
+  overflow: hidden;
+}
+.card #inputsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 65%;
+}
+.card #inputsContainer input {
+  height: 45px;
+  margin: 10px 0;
+  border: none;
+  background-color: #eff2f1;
+  font-size: 16px;
+}
+.card #inputsContainer input:focus {
+  background-color: #d9dbdb;
+  outline: #99b3d5;
+}
+.card #inputsContainer input#departureDate {
+  margin-top: 35px;
+}
+.card #searchBtn {
+  height: 45px;
+  width: calc(100% - 30px);
+}
+
+#ticketsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0 12px;
+}
+#ticketsContainer #imgContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 75%;
+  margin: 20% 0 50px;
+}
+#ticketsContainer #imgContainer::after {
+  content: "";
+  width: 100%;
+  border: 2px solid #4fab91;
+}
+#ticketsContainer #imgContainer img {
+  width: 200px;
+  margin-bottom: 15%;
+}
+
+.ticket-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  margin-top: 25px;
+  background-color: #f5eeee;
+}
+.ticket-item .book {
+  width: 60px;
+  height: 25px;
+}
+
+.flex-main {
+  width: 100%;
+  height: calc(100vh - 70px);
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 500px;
+  max-width: 900px;
+  width: 60%;
+  min-height: 250px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+#container > p {
+  margin: 50px 0 25px;
+  font-size: 20px;
+}
+#container.not-found {
+  justify-content: center;
+}
+#container.not-found > p {
+  margin: 25px 0;
+}
+#container #ticket-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 570px;
+  overflow-y: auto;
+}
+#container .ticket-item {
+  flex-shrink: 0;
+  width: 95%;
+  margin-bottom: 15px;
+  padding: 0 15px;
+}
+#container .ticket-item .cross {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  font-size: 15px;
+}
+#container .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+  margin-top: 15px;
+  color: #fff;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  background-color: #00153e;
+}
+#container .footer.bookings {
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 125px;
+  background-color: #fff;
+}
+#container .footer.bookings > div {
+  width: 180px;
+  border: 1px solid darkgray;
+}
+#container .footer.bookings > p {
+  color: #7bb4a7;
+  text-align: center;
+  font-weight: 500;
+}
+#container .footer span {
+  font-size: 20px;
+  margin-left: 50px;
+}
+#container .footer .btn {
+  height: 35px;
+  width: 100px;
+  margin-right: 50px;
+}/*# sourceMappingURL=style.css.map */
