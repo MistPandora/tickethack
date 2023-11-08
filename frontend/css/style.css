@@ -5,6 +5,7 @@
 #ticketsContainer input:not(.book), .card #inputsContainer input:not(.book),
 #ticketsContainer .ticket-item,
 .card #inputsContainer .ticket-item {
+  flex-shrink: 0;
   width: calc(100% - 30px);
   padding: 0 15px;
   font-size: 16px;
@@ -219,6 +220,7 @@ header #nav a:hover {
 
 .ticket-item {
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
   align-items: center;
   height: 55px;
