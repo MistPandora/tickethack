@@ -16,28 +16,20 @@ router.post('/', (req, res) => {
 
 
     let dateReceivedTomorrow = new Date(); // Thu Nov 08 2023 **current hour** GMT+0100 (heure normale d’Europe centrale)
-    dateReceivedTomorrow.setDate(fullDate.getDate() + 1); // Thu Nov 09 2023 **current hour** GMT+0100 (heure normale d’Europe centrale)
+    dateReceivedTomorrow.setDate(dateReceived.getDate() + 1); // Thu Nov 09 2023 **current hour** GMT+0100 (heure normale d’Europe centrale)
     dateReceivedTomorrow.setHours(1, 0, 0, 0); // Thu Nov 09 2023 00:00:00 GMT+0100 (heure normale d’Europe centrale)
 
     dateReceivedTomorrow = dateReceivedTomorrow.toISOString(); //2023-11-09T00:00:00.000Z
 
-    fullDate = fullDate.toISOString() //2023-11-08T*hours*Z
+    dateReceived = dateReceived.toISOString() //2023-11-08T*hours*Z
 
 
     // $gt : greater than the value ; $lt : less than the value
 
-    if (fullDateReceived.split('T')[0] == dateReceived.split('T')[0]) {
+    Trip.find({ departure: { $regex: new RegExp(departure, 'i') }, arrival: { $regex: new RegExp(arrival, 'i') }, date: { $gt: dateReceived, $lt: dateReceivedTomorrow } }).then(searchCities => {
 
-        Trip.find({ departure: { $regex: new RegExp(departure, 'i') }, arrival: { $regex: new RegExp(arrival, 'i') }, date: { $gt: dateReceived, $lt: dateReceivedTomorrow } }).then(searchCities => {
-
-            res.json({ result: true, tickets: searchCities });
-        });
-    } else {
-        Trip.find({ departure: { $regex: new RegExp(departure, 'i') }, arrival: { $regex: new RegExp(arrival, 'i') }, date: fullDateReceived }).then(searchCities => {
-
-            res.json({ result: true, tickets: searchCities });
-        });
-    }
+        res.json({ result: true, tickets: searchCities });
+    });
 
 })
 
