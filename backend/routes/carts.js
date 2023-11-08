@@ -4,7 +4,11 @@ var router = express.Router();
 
 router.get('/', (req, res) => {
     Carts.find().then(cartsList => {
-        res.json({ carts: cartsList })
+        if (cartsList.length != 0) {
+            res.json({ result: true, carts: cartsList })
+        } else {
+            res.json({ result: false })
+        }
     })
 })
 
@@ -22,6 +26,8 @@ router.post('/new', (req, res) => {
     });
 
     newCarts.save()
+
+    res.json({ result: true, message: "New cart saved !" })
 
 });
 

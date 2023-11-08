@@ -27,8 +27,11 @@ router.post('/', (req, res) => {
     // $gt : greater than the value ; $lt : less than the value
 
     Trip.find({ departure: { $regex: new RegExp(departure, 'i') }, arrival: { $regex: new RegExp(arrival, 'i') }, date: { $gt: dateReceived, $lt: dateReceivedTomorrow } }).then(searchCities => {
-
-        res.json({ result: true, tickets: searchCities });
+        if (searchCities.length != 0) {
+            res.json({ result: true, tickets: searchCities });
+        } else {
+            res.json({ result: false });
+        }
     });
 
 })
