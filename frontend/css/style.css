@@ -108,6 +108,20 @@ header #nav a:hover {
   font-weight: 500;
 }
 
+#indexPage {
+  background-image: url("../../img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#bookingsPage #bookings {
+  font-weight: 500;
+}
+
+#cartPage #cart {
+  font-weight: 500;
+}
+
 #title {
   color: #fff;
   text-align: center;
@@ -259,13 +273,6 @@ header #nav a:hover {
 #container.not-found > p {
   margin: 25px 0;
 }
-#container #ticket-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 85%;
-  max-height: 570px;
-  overflow-y: auto;
-}
 #container .ticket-item {
   flex-shrink: 0;
   width: 95%;
@@ -313,4 +320,12 @@ header #nav a:hover {
   height: 35px;
   width: 100px;
   margin-right: 50px;
+}
+
+#ticket-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 570px;
+  overflow-y: auto;
 }/*# sourceMappingURL=style.css.map */

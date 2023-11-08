@@ -62,7 +62,7 @@ if (document.querySelector('#cartPage')) {
             </div>
             <div class="footer">
                 <span id="total"></span>
-                <input class="btn" type="button" value="Purchase">
+                <input id="purchase" class="btn" type="button" value="Purchase">
             </div>`
 
                 for (const cart of carts.carts) {
@@ -71,21 +71,33 @@ if (document.querySelector('#cartPage')) {
 
                 }
 
-
-
             } else {
                 container.classList.add('not-found');
                 container.innerHTML = `<p>No tickets in your carts.</p>
                 <p>Why not plan a trip?</p>`
             }
+            if (document.querySelector("#purchase")) {
+                document.querySelector("#purchase").addEventListener('click', () => {
+                    fetch('http://localhost:3000/carts/delete')
+                        .then(r => r.json())
+                        .then(() => {
+                            console.log("Deleted succeeded");
+                            window.location.assign('bookings.html')
+                        })
+                })
+            }
+
 
         })
+
+
+
 }
 
 
 // if we are in booking.html
 
-if (document.querySelector('#bookingPage')) {
+if (document.querySelector('#bookingsPage')) {
 
     const container = document.querySelector('#container');
 
@@ -94,13 +106,61 @@ if (document.querySelector('#bookingPage')) {
         .then(bookings => {
 
             if (bookings.result) {
+                container.innerHTML = `<p>My Bookings</p>
+                <div id="ticket-wrapper"></div>`
 
-                container.innerHTML = ` <p>My cart</p>
-            <div id="ticket-wrapper">
-            </div>
-            <div class="footer">
-                <span id="total"></span>
-                <input class="btn" type="button" value="Purchase">
+                for (const booking of bookings.bookings) {
+
+                    const departure = booking.departure;
+                    const arrival = booking.arrival;
+                    const date = booking.date;
+                    const price = booking.price;
+
+                    const hour = date.split("T")[1].match(/\d{2}:\d{2}/);
+
+                    const dateNowTimestamp = Date.parse(new Date());
+                    const bookingTimestamp = Date.parse(date);
+
+                    let diffInHours = (bookingTimestamp - dateNowTimestamp) / 1000 / 60 / 60;
+                    diffInHours = Math.floor(diffInHours);
+
+                    let diffInDays = 0;
+
+                    let str;
+
+                    if (diffInHours < 1) {
+                        str = "less than an hour"
+                    } else if (diffInHours >= 24) {
+
+                        while (diffInHours >= 24) {
+                            diffInDays++;
+                            diffInHours -= 24;
+                        }
+
+                        let daysCorrection = diffInDays > 1 ? "days" : "day";
+                        let hoursCorrection = diffInHours > 1 ? "hours" : "hour";
+
+                        str = diffInHours != 0 ? `${diffInDays} ${daysCorrection} and ${diffInHours} ${hoursCorrection}` : `${diffInDays} ${daysCorrection}`
+                    } else {
+                        let hoursCorrection = diffInHours > 1 ? "hours" : "hour";
+                        str = `${diffInHours} ${hoursCorrection}`
+                    }
+
+
+                    document.querySelector('#ticket-wrapper').innerHTML += `
+                <div class="ticket-item">
+                    <span>${departure} > ${arrival}</span>
+                    <span>${hour}</span>
+                    <span>${price}€</span>
+                    <p>Departure in ${str}</p>
+                </div>`
+
+                }
+
+                container.innerHTML += `
+                <div class="footer bookings">
+                <div></div>
+                <p>Enjoy your travels with Tickethack!</p>
             </div>`
 
             } else {
@@ -183,18 +243,20 @@ const displayCarts = (cart) => {
         const departure = cart.departure;
         const arrival = cart.arrival;
         const date = cart.date;
-        const price = cart.date;
+        const price = cart.price;
 
         const dataToDelete = { departure, arrival, date, price };
-        fetch('http://localhost:3000/trips/cancel', {
+
+        console.log(dataToDelete)
+        fetch('http://localhost:3000/carts/cancel', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataToDelete)
         })
             .then(r => r.json())
             .then(() => {
-                newCartItem.remove();
-                console.log("ok")
+
+                window.location.reload();
             })
 
     })

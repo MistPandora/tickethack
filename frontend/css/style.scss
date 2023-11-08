@@ -132,6 +132,24 @@ header {
     }
 }
 
+#indexPage {
+    background-image: url('../../img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#bookingsPage {
+    #bookings {
+        font-weight: 500;
+    }
+}
+
+#cartPage {
+    #cart {
+        font-weight: 500;
+    }
+}
+
 #title {
     color: #fff;
     text-align: center;
@@ -292,14 +310,6 @@ header {
         }
     }
 
-    #ticket-wrapper {
-        display: flex;
-        flex-direction: column;
-        width: 85%;
-        max-height: 570px;
-        overflow-y: auto;
-    }
-
     .ticket-item {
         flex-shrink: 0;
         width: 95%;
@@ -356,4 +366,12 @@ header {
             margin-right: 50px;
         }
     }
+}
+
+#ticket-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    max-height: 570px;
+    overflow-y: auto;
 }
