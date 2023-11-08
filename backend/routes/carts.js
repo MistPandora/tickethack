@@ -73,9 +73,6 @@ router.get('/delete', (req, res) => {
 
         res.json({ result: true })
     })
-        .then(() => {
-
-        })
 
 })
 
