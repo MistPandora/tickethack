@@ -12,8 +12,10 @@ router.post('/', (req, res) => {
     SI la date reçue est égale à aujourd'hui, ALORS la date reçue est égale à aujourd'hui AVEC L'HEURE D'AUJOURD'HUI (et non 00:00:00)
     SINON la date reçue vaut la date ultérieure (avec l'heure à 00:00:00) */
 
-    let dateReceived = date == new Date().setHours(1, 0, 0, 0) ? new Date() : new Date(date);
+    let today = new Date();
+    today.setHours(today.getHours() + 1)
 
+    let dateReceived = date == new Date().toISOString().split('T')[0] ? today : new Date(date);
 
     let dateReceivedTomorrow = new Date(); // Thu Nov 08 2023 **current hour** GMT+0100 (heure normale d’Europe centrale)
     dateReceivedTomorrow.setDate(dateReceived.getDate() + 1); // Thu Nov 09 2023 **current hour** GMT+0100 (heure normale d’Europe centrale)

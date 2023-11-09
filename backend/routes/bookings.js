@@ -5,7 +5,11 @@ var router = express.Router();
 
 router.get('/', (req, res) => {
     Bookings.find().then(ticketsList => {
-        res.json({ bookings: ticketsList })
+        if (ticketsList.length != 0) {
+            res.json({ result: true, bookings: ticketsList })
+        } else {
+            res.json({ result: false })
+        }
     })
 })
 

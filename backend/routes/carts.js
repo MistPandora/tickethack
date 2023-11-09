@@ -32,21 +32,30 @@ router.post('/new', (req, res) => {
 
 });
 
-router.post('/cancel/', (res, req) => {
+router.post('/cancel', (req, res) => {
+
     const departure = req.body.departure;
     const arrival = req.body.arrival;
     const date = req.body.date;
     const price = req.body.price
-    Carts.deleOne({
+
+    console.log(departure, arrival, date, price)
+    Carts.deleteOne({
         departure,
         arrival,
         date,
         price
+<<<<<<< HEAD
     })
     res.json({ result: true })
+=======
+    }).then(() => {
+        res.json({ result: true })
+    })
+>>>>>>> 76251af16b7bc4de8943b8113152bb17878945cc
 })
 
-router.post('/delete', (req, res) => {
+router.get('/delete', (req, res) => {
     Carts.find().then(carts => {
 
         for (const cart of carts) {
@@ -59,14 +68,14 @@ router.post('/delete', (req, res) => {
                 departure,
                 arrival,
                 date,
-                price,
+                price
             });
 
-            newBooking.save();
-
+            newBooking.save().then(() => {
+                Carts.deleteOne({ departure, arrival, date, price }).then((element) => console.log(element + " is deleted"))
+            });
         }
 
-        Carts.deleteMany().then(() => console.log("Everything is deleted"))
         res.json({ result: true })
     })
 
