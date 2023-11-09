@@ -45,14 +45,9 @@ router.post('/cancel', (req, res) => {
         arrival,
         date,
         price
-<<<<<<< HEAD
-    })
-    res.json({ result: true })
-=======
     }).then(() => {
         res.json({ result: true })
     })
->>>>>>> 76251af16b7bc4de8943b8113152bb17878945cc
 })
 
 router.get('/delete', (req, res) => {
